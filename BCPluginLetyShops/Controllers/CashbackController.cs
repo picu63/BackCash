@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using BC.Interfaces;
-using BCDataContext;
-using BCPlugin.Interfaces.Api;
+using BC.Models;
+using BCPlugin.Interfaces.Apis;
 using BCPlugin.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BCPluginLetyShops.Controllers
+namespace BCPlugin.LetyShops.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -25,12 +23,13 @@ namespace BCPluginLetyShops.Controllers
         }
 
         [HttpGet]
-        public async Task<decimal> GetCashback([FromQuery]Guid shopId, [FromQuery]Guid? categoryId)
+        public async Task<ActionResult<Cashback>> GetCashback([FromQuery]Guid shopId, [FromQuery]Guid? categoryId)
         {
             var shop = dbContext.Shops.SingleOrDefault(s => s.Id == shopId);
+            if (shop == null) return NotFound($"No shop with given id: {shopId}");
             var category = dbContext.Categories.SingleOrDefault(c => c.Id == categoryId);
-
-            return cashbackService.GetCashback(shop, category);
+            if (category == null) return NotFound($"No category with given id: {shopId}");
+            return await cashbackService.GetCashback(shop, category);
         }
     }
 }

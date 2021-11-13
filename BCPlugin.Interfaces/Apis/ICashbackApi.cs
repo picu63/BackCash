@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using BC.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BCPlugin.Interfaces.Api
+namespace BCPlugin.Interfaces.Apis
 {
     public interface ICashbackApi
     {
@@ -10,7 +12,7 @@ namespace BCPlugin.Interfaces.Api
         /// </summary>
         /// <param name="shopId">Unique id of shop.</param>
         /// <param name="categoryId">Unique id of category.</param>
-        /// <returns>Percentage of cashback.</returns>
-        Task<decimal> GetCashback(Guid shopId, Guid? categoryId);
+        /// <returns>Cashback for purchase.</returns>
+        Task<ActionResult<Cashback>> GetCashback(Guid shopId, Guid? categoryId);
     }
 }

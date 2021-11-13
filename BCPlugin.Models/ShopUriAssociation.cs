@@ -3,6 +3,6 @@
     public class ShopUriAssociation
     {
         public Guid ShopId { get; set; }
-        public Uri Uri { get; set; }
+        public string RelativePath { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using BCModels;
+﻿using BC.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BC.Interfaces

@@ -1,4 +1,4 @@
-﻿namespace BCModels;
+﻿namespace BC.Models;
 
 public class Category
 {

@@ -6,11 +6,19 @@
 
   <ItemGroup>
     <Folder Include="Apis\" />
+    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BCModels\BCModels.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BCModels\BC.Models.csproj" />
+    <ProjectReference Include="..\BCPlugin.Models\BCPlugin.Models.csproj" />
   </ItemGroup>
 
 </Project>

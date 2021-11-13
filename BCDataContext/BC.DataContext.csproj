@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BC.Interfaces\BC.Interfaces.csproj" />
-    <ProjectReference Include="..\BCModels\BCModels.csproj" />
+    <ProjectReference Include="..\BCModels\BC.Models.csproj" />
   </ItemGroup>
 
 </Project>

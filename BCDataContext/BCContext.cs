@@ -1,9 +1,8 @@
-﻿using System;
-using BC.Interfaces;
-using BCModels;
+﻿using BC.Interfaces;
+using BC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BCDataContext
+namespace BC.DataContext
 {
     public class BCContext : DbContext, IBCContext
     {

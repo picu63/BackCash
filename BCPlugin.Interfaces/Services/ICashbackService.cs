@@ -1,10 +1,12 @@
 ﻿using System;
-using BCModels;
+using System.Net.Http;
+using System.Threading.Tasks;
+using BC.Models;
 
 namespace BCPlugin.Interfaces.Services;
 
 public interface ICashbackService
 {
-    Uri BaseUri { get; }
-    decimal GetCashback(Shop shop, Category category);
+    HttpClient HttpClient { get; }
+    Task<Cashback> GetCashback(Shop shop, Category category);
 }
