@@ -1,0 +1,28 @@
+﻿@page "/shopselector"
+@using BC.Client.Services
+@using BC.Models
+@inject ShopsService shopsService
+
+<h3>ShopSelector</h3>
+<MudGrid>
+    <MudItem>
+        <MudAutocomplete T="Shop" Label="Wprowadź sklep" @bind-Value="selectedShop" SearchFunc="SearchShop"
+                         ToStringFunc="shop => shop.Name" ></MudAutocomplete>
+    </MudItem>
+    @if(selectedShop is not null)
+    {
+        <MudChip>@selectedShop.Name</MudChip>
+    }
+</MudGrid>
+@code {
+
+    private Shop selectedShop;
+
+    private async Task<IEnumerable<Shop>> SearchShop(string arg)
+    {
+        var allShops = await shopsService.GetShops();
+        if (string.IsNullOrEmpty(arg))
+            return allShops;
+        return allShops?.Where(s=>s.Name.StartsWith(arg, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
+}

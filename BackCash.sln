@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Interfaces", "BC.Interfa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCPlugin.Models", "BCPlugin.Models\BCPlugin.Models.csproj", "{797E0B13-BCC9-451B-AB1D-FEA497780782}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Server", "BC\Server\BC.Server.csproj", "{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Client", "BC\Client\BC.Client.csproj", "{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
