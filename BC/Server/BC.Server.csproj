@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BCDataContext\BC.DataContext.csproj" />
     <ProjectReference Include="..\Client\BC.Client.csproj" />
   </ItemGroup>
 

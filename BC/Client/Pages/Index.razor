@@ -1,9 +1,19 @@
 ﻿@page "/"
+@using BC.Models
 
 <PageTitle>Index</PageTitle>
 
-<h1>Witaj w aplikacji która pokaże ci najlepszych dostawców cashback w twoim sklepie!</h1>
+<h1>Witaj w aplikacji która pokaże Ci najlepszych dostawców cashback w twoim sklepie!</h1>
 
-Welcome to your new app.
+<ShopSelector SelectedShopChanged="ShopChanged"></ShopSelector>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="bottom-0">
+    <SurveyPrompt Title="How is Blazor working for you?"/>
+</div>
+@code
+{
+    private async Task ShopChanged(Shop arg)
+    {
+        Console.WriteLine("Shop changed!");
+    }
+}

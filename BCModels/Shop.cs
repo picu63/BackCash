@@ -1,7 +1,10 @@
-﻿namespace BC.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BC.Models;
 
 public class Shop
 {
-    public Guid Id { get; set; }
+    [Key]
+    public long Id { get; set; }
     public string Name { get; set; }
 }

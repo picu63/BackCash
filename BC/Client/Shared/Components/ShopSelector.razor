@@ -3,20 +3,23 @@
 @using BC.Models
 @inject ShopsService shopsService
 
-<h3>ShopSelector</h3>
+<h3>Wybierz który chcesz zobaczyć</h3>
 <MudGrid>
     <MudItem>
-        <MudAutocomplete T="Shop" Label="Wprowadź sklep" @bind-Value="selectedShop" SearchFunc="SearchShop"
-                         ToStringFunc="shop => shop.Name" ></MudAutocomplete>
+        <MudAutocomplete T="Shop" Label="Wprowadź sklep" @bind-Value="SelectedShop" SearchFunc="SearchShop"
+                         ToStringFunc="shop => shop.Name"></MudAutocomplete>
     </MudItem>
-    @if(selectedShop is not null)
+    @if(SelectedShop is not null)
     {
-        <MudChip>@selectedShop.Name</MudChip>
+        <MudChip>@SelectedShop.Name</MudChip>
     }
 </MudGrid>
 @code {
+    [Parameter]
+    public Shop SelectedShop { get; set; }
 
-    private Shop selectedShop;
+    [Parameter]
+    public EventCallback<Shop> SelectedShopChanged { get; set; }
 
     private async Task<IEnumerable<Shop>> SearchShop(string arg)
     {

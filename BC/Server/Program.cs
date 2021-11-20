@@ -1,3 +1,5 @@
+using BC.DataContext;
+using BC.Interfaces;
 using BC.Server.Data;
 using BC.Server.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -13,9 +15,14 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "BCServerAPI", Version = "v1" });
 });
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var identityConnectionString = builder.Configuration.GetConnectionString("IdentityConnection");
+var bcConnectionString = builder.Configuration.GetConnectionString("BCDatabase");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(identityConnectionString));
+builder.Services.AddDbContext<IBCContext, BCContext>(options =>
+{
+    options.UseSqlServer(bcConnectionString);
+});
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
