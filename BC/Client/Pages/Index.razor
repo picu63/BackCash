@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using BC.Models
+@using BC.Client.Services
+@inject CashbackService cashbackService
 
 <PageTitle>Index</PageTitle>
 
@@ -7,13 +9,21 @@
 
 <ShopSelector SelectedShopChanged="ShopChanged"></ShopSelector>
 
-<div class="bottom-0">
-    <SurveyPrompt Title="How is Blazor working for you?"/>
-</div>
+<MudGrid>
+    @foreach (var cb in cashBacks)
+    {
+        <MudItem>
+            <MudCard>
+                @cb.Provider
+            </MudCard>
+        </MudItem>
+    }
+</MudGrid>
 @code
 {
-    private async Task ShopChanged(Shop arg)
+    private List<Cashback> cashBacks;
+    private async Task ShopChanged(Shop shopSelected)
     {
-        Console.WriteLine("Shop changed!");
+        cashBacks = await cashbackService.GetCashbacks(shopSelected.Id);
     }
 }

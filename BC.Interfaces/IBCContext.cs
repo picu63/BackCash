@@ -1,11 +1,10 @@
 ﻿using BC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BC.Interfaces
+namespace BC.Interfaces;
+
+public interface IBCContext
 {
-    public interface IBCContext
-    {
-        DbSet<Shop> Shops { get; set; }
-        DbSet<Category> Categories { get; set; }
-    }
+    DbSet<Shop> Shops { get; set; }
+    DbSet<Category> Categories { get; set; }
 }

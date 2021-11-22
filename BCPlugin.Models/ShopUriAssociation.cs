@@ -1,8 +1,7 @@
-﻿namespace BCPlugin.Models
+﻿namespace BCPlugin.Models;
+
+public class ShopUriAssociation
 {
-    public class ShopUriAssociation
-    {
-        public Guid ShopId { get; set; }
-        public string RelativePath { get; set; }
-    }
+    public long ShopId { get; set; }
+    public string RelativePath { get; set; }
 }

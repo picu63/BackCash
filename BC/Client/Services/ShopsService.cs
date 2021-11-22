@@ -3,7 +3,7 @@ using BC.Models;
 
 namespace BC.Client.Services;
 
-public class ShopsService
+internal class ShopsService
 {
     private readonly HttpClient client;
 

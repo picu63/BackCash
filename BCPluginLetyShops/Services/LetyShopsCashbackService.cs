@@ -48,7 +48,7 @@ public class LetyShopsCashbackService : ICashbackService
         // format 'd,dd %' || 'd,dd {currency code}'
         var amount = GetAmountFromString(innerText);
         var type = GetCashBackTypeFromString(innerText);
-        return await Task.FromResult(new Cashback() {Amount = amount, Type = type});
+        return await Task.FromResult(new Cashback() {Amount = amount, Type = type, Provider = new CashbackProvider(){Name = "LetyShops", Url = "https://letyshops.com"}});
     }
 
     private decimal GetAmountFromString(string text)

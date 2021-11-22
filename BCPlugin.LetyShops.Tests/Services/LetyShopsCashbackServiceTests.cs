@@ -27,17 +27,17 @@ public class LetyShopsCashbackServiceTests
     {
         new ShopUriAssociation
         {
-            ShopId = new Guid("63bc0a4b-e878-4f69-901d-3cd540c8224f"),
+            ShopId = 1,
             RelativePath = "shops/ccc-pl"
         },
         new ShopUriAssociation
         {
-            ShopId = new Guid("a2ae6acb-46cf-40a8-9353-c247410373a9"),
+            ShopId = 2,
             RelativePath = "shops/allegro-pl"
         },
         new ShopUriAssociation
         {
-            ShopId = new Guid("be6d93a3-bbdb-4dee-862c-98b7fa407f7d"),
+            ShopId = 3,
             RelativePath = "shops/pyszne-pl"
         }
     };
@@ -56,20 +56,18 @@ public class LetyShopsCashbackServiceTests
     private LetyShopsCashbackService CreateService()
     {
         var chromeOptions = new ChromeOptions();
-#if !DEBUG
-        chromeOptions.AddArgument("headless");
-#endif
+        chromeOptions.AddArgument("headless"); // comment this to see browser
         return new LetyShopsCashbackService(
             this.mockPluginDbContext.Object, new ChromeDriver(chromeOptions));
     }
 
-    // Arguments in testcase must be taken from original site
-    [TestCase("63bc0a4b-e878-4f69-901d-3cd540c8224f", 3.25, "ccc")]
-    [TestCase("a2ae6acb-46cf-40a8-9353-c247410373a9", 1.45, "allegro")]
-    [TestCase("be6d93a3-bbdb-4dee-862c-98b7fa407f7d", 2, "pyszne")]
-    public async Task ShouldReturnActualCashback(string id,decimal actualPromo, string shopName)
+    // Arguments in test case must be taken from original site
+    [TestCase(1, 3.25, "ccc")]
+    [TestCase(2, 1.45, "allegro")]
+    [TestCase(3, 2, "pyszne")]
+    public async Task ShouldReturnActualCashback(long id,decimal actualPromo, string shopName)
     {
-        var guidCast = new Guid(id);
+        var guidCast = id;
         // Arrange
         var service = this.CreateService();
         Shop cccShop = new Shop() { Id = guidCast, Name = shopName };
