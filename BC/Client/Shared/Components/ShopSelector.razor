@@ -15,8 +15,18 @@
     }
 </MudGrid>
 @code {
+
+    private Shop selectedShop;
+
     [Parameter]
-    public Shop SelectedShop { get; set; }
+    public Shop SelectedShop {
+        get => selectedShop;
+        set
+        {
+            selectedShop = value;
+            SelectedShopChanged.InvokeAsync(value);
+        }
+    }
 
     [Parameter]
     public EventCallback<Shop> SelectedShopChanged { get; set; }
@@ -28,4 +38,5 @@
             return allShops;
         return allShops?.Where(s=>s.Name.StartsWith(arg, StringComparison.OrdinalIgnoreCase)).ToList();
     }
+
 }

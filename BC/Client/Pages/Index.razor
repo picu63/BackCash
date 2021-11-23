@@ -21,9 +21,10 @@
 </MudGrid>
 @code
 {
-    private List<Cashback> cashBacks;
+    private List<Cashback> cashBacks = new();
     private async Task ShopChanged(Shop shopSelected)
     {
-        cashBacks = await cashbackService.GetCashbacks(shopSelected.Id);
+        Console.WriteLine("Im here");
+        cashBacks = (await cashbackService.GetCashbacks(shopSelected.Id)).ToList();
     }
 }

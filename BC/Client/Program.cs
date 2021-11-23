@@ -17,6 +17,7 @@ builder.Services.AddMudServices();
 // Supply HttpClient instances that include access tokens when making requests to the server project
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BC.ServerAPI"));
 builder.Services.AddScoped<ShopsService>();
+builder.Services.AddScoped<CashbackService>();
 builder.Services.AddApiAuthorization();
 
 await builder.Build().RunAsync();

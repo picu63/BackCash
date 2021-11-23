@@ -19,14 +19,11 @@ public class LetyShopsCashbackService : ICashbackService
     private readonly IPluginDbContext context;
     private readonly IWebDriver driver;
 
-    public LetyShopsCashbackService(IPluginDbContext context, IWebDriver driver)
+    public LetyShopsCashbackService(IPluginDbContext context, IWebDriver driver, HttpClient httpClient)
     {
         this.context = context;
         this.driver = driver;
-        HttpClient = new HttpClient
-        {
-            BaseAddress = new Uri("https://letyshops.com/pl/")
-        };
+        HttpClient = httpClient;
     }
 
     public HttpClient HttpClient { get; }

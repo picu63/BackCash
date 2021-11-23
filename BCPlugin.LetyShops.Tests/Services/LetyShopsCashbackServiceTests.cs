@@ -58,7 +58,7 @@ public class LetyShopsCashbackServiceTests
         var chromeOptions = new ChromeOptions();
         chromeOptions.AddArgument("headless"); // comment this to see browser
         return new LetyShopsCashbackService(
-            this.mockPluginDbContext.Object, new ChromeDriver(chromeOptions));
+            this.mockPluginDbContext.Object, new ChromeDriver(chromeOptions), new HttpClient(){BaseAddress = new Uri("https://letyshops.com/pl")});
     }
 
     // Arguments in test case must be taken from original site

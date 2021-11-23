@@ -12,8 +12,8 @@ internal class CashbackService
         this.client = client;
     }
 
-    public async Task<List<Cashback>> GetCashbacks(long shopId)
+    public async Task<Cashback[]> GetCashbacks(long shopId)
     {
-        return await client.GetFromJsonAsync<List<Cashback>>($"cashbacks?shopId={shopId}");
+        return await client.GetFromJsonAsync<Cashback[]>($"cashbacks?shopId={shopId}");
     }
 }

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace BCPlugin.LetyShops;
 
@@ -25,10 +27,11 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddScoped<ICashbackService, LetyShopsCashbackService>();
+        services.AddScoped<IWebDriver, ChromeDriver>();
         services.AddDbContext<IBCContext, BCContext>();
         services.AddHttpClient("letyshops", client =>
         {
-            client.BaseAddress = new Uri("https://letyshops.com/");
+            client.BaseAddress = new Uri("https://letyshops.com/pl");
         });
         services.AddControllers();
         services.AddSwaggerGen(c =>

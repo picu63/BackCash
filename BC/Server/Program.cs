@@ -2,6 +2,7 @@ using BC.DataContext;
 using BC.Interfaces;
 using BC.Server.Data;
 using BC.Server.Models;
+using BC.Server.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,9 @@ builder.Services.AddDbContext<IBCContext, BCContext>(options =>
 {
     options.UseSqlServer(bcConnectionString);
 });
+
+builder.Services.Configure<List<PluginOption>>(builder.Configuration.GetSection("Plugins"));
+builder.Services.AddScoped<IPluginsService, PluginsService>();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
