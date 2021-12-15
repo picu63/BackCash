@@ -7,4 +7,5 @@ public class Shop
     [Key]
     public long Id { get; set; }
     public string Name { get; set; }
+    public string ShopUrl { get; set; }
 }

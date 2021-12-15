@@ -5,6 +5,7 @@ using BCPlugin.Interfaces.Services;
 using BCPlugin.LetyShops.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +29,8 @@ public class Startup
     {
         services.AddScoped<ICashbackService, LetyShopsCashbackService>();
         services.AddScoped<IWebDriver, ChromeDriver>();
-        services.AddDbContext<IBCContext, BCContext>();
+        services.AddDbContext<IBCContext, BCContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("BCDatabase")));
         services.AddHttpClient("letyshops", client =>
         {
             client.BaseAddress = new Uri("https://letyshops.com/pl");

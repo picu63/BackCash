@@ -7,8 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using BC.Interfaces;
 using BC.Models;
-using BCPlugin.Interfaces.Repositories;
 using BCPlugin.Interfaces.Services;
 using OpenQA.Selenium;
 
@@ -16,10 +16,10 @@ namespace BCPlugin.LetyShops.Services;
 
 public class LetyShopsCashbackService : ICashbackService
 {
-    private readonly IPluginDbContext context;
+    private readonly IBCContext context;
     private readonly IWebDriver driver;
 
-    public LetyShopsCashbackService(IPluginDbContext context, IWebDriver driver, HttpClient httpClient)
+    public LetyShopsCashbackService(IBCContext context, IWebDriver driver, HttpClient httpClient)
     {
         this.context = context;
         this.driver = driver;
@@ -30,7 +30,7 @@ public class LetyShopsCashbackService : ICashbackService
 
     public async Task<Cashback> GetCashback(Shop shop, Category category)
     {
-        var shopUri = context.ShopUriAssociations.SingleOrDefault(a => a.ShopId == shop.Id)?.RelativePath;
+        var shopUri = context.ShopUriAssociations.SingleOrDefault(a => a.Shop.Id == shop.Id)?.RelativePath;
         if (shopUri is null)
         {
             return null;

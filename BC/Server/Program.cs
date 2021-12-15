@@ -25,8 +25,9 @@ builder.Services.AddDbContext<IBCContext, BCContext>(options =>
     options.UseSqlServer(bcConnectionString);
 });
 
-builder.Services.Configure<List<PluginOption>>(builder.Configuration.GetSection("Plugins"));
-builder.Services.AddScoped<IPluginsService, PluginsService>();
+builder.Services.AddScoped<ICashbackProviderService, CashbackProviderService>();
+builder.Services.AddScoped<ICashbacksService, CashbacksService>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)

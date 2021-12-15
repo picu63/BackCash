@@ -12,11 +12,15 @@
 <MudGrid>
     @foreach (var cb in cashBacks)
     {
-        <MudItem>
-            <MudCard>
-                @cb.Provider
-            </MudCard>
-        </MudItem>
+        <MudCard>
+            <MudCardContent>
+                <MudText Typo="Typo.h5">@cb.Provider.Name</MudText>
+                <MudText>@cb.Amount @GetAmountSign(cb.Type)</MudText>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton Link="@cb.Provider.Url" Variant="Variant.Outlined" Color="Color.Primary">Przejdź do strony</MudButton>
+            </MudCardActions>
+        </MudCard>
     }
 </MudGrid>
 @code
@@ -26,5 +30,14 @@
     {
         Console.WriteLine("Im here");
         cashBacks = (await cashbackService.GetCashbacks(shopSelected.Id)).ToList();
+    }
+
+    private string GetAmountSign(CashbackType cashbackType)
+    {
+        return cashbackType switch
+        {
+            CashbackType.Cash => "PLN",
+            CashbackType.Percentage => "%",
+            _ => throw new ArgumentOutOfRangeException(nameof(cashbackType), cashbackType, null)};
     }
 }

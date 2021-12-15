@@ -62,6 +62,25 @@ public class CashbackControllerTests
     }
 
     [Test]
+    public async Task NullableCategoryShouldReturnCashback()
+    {
+        var shopId = shopsData[0].Id;
+
+        service.Setup(s => s.GetCashback(It.IsAny<Shop>(), It.IsAny<Category>()))
+            .Returns(Task.FromResult(new Cashback() { Amount = 2.4m, Type = CashbackType.Cash }));
+
+        var cashbackController = new CashbackController(context.Object, service.Object);
+
+        var cashback = (await cashbackController.GetCashback(shopId, null)).Value;
+
+        Assert.AreEqual(2.4m, cashback.Amount);
+        Assert.AreEqual(CashbackType.Cash, cashback.Type);
+        context.Verify(c => c.Shops, Times.Once);
+        context.Verify(c => c.Categories, Times.Never);
+        service.Verify(s => s.GetCashback(It.IsAny<Shop>(), It.IsAny<Category>()), Times.Once);
+    }
+
+    [Test]
     public async Task NotExistingShopShouldReturnNotFound()
     {
         var shopId = (shopsData.Max(s => s.Id)) + 1;

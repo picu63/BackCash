@@ -26,9 +26,10 @@ public class CashbackController : ControllerBase, ICashbackApi
     public async Task<ActionResult<Cashback>> GetCashback([FromQuery]long shopId, [FromQuery]long? categoryId)
     {
         var shop = dbContext.Shops.SingleOrDefault(s => s.Id == shopId);
-        if (shop == null) return NotFound($"No shop with given id: {shopId}");
+        if (shop is null) return NotFound($"No shop with given id: {shopId}");
+        if (categoryId is null) return await cashbackService.GetCashback(shop, null);
         var category = dbContext.Categories.SingleOrDefault(c => c.Id == categoryId);
-        if (category == null) return NotFound($"No category with given id: {shopId}");
+        if (category is null) return NotFound($"No category with given id: {shopId}");
         return await cashbackService.GetCashback(shop, category);
     }
 }

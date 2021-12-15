@@ -1,5 +1,4 @@
-﻿using BCPlugin.Interfaces.Repositories;
-using BCPlugin.LetyShops.Services;
+﻿using BCPlugin.LetyShops.Services;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -8,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BC.Interfaces;
 using BC.Models;
-using BCPlugin.Models;
 using MockQueryable.Moq;
 using OpenQA.Selenium.Chrome;
 
@@ -21,23 +20,27 @@ public class LetyShopsCashbackServiceTests
     private MockRepository mockRepository;
 
     private Mock<HttpMessageHandler> mockHttpMessageHandler;
-    private Mock<IPluginDbContext> mockPluginDbContext;
+    private Mock<IBCContext> mockPluginDbContext;
+
 
     private readonly List<ShopUriAssociation> shopUriAssociations = new()
     {
         new ShopUriAssociation
         {
-            ShopId = 1,
+            Id = 1,
+            Shop = new Shop(){Id = 1, Name = "CCC"},
             RelativePath = "shops/ccc-pl"
         },
         new ShopUriAssociation
         {
-            ShopId = 2,
+            Id = 2,
+            Shop = new Shop(){Id = 2, Name = "Allegro"},
             RelativePath = "shops/allegro-pl"
         },
         new ShopUriAssociation
         {
-            ShopId = 3,
+            Id = 3,
+            Shop = new Shop(){Id = 3, Name = "Pyszne.pl"},
             RelativePath = "shops/pyszne-pl"
         }
     };
@@ -48,7 +51,7 @@ public class LetyShopsCashbackServiceTests
         this.mockRepository = new MockRepository(MockBehavior.Strict);
 
         this.mockHttpMessageHandler = this.mockRepository.Create<HttpMessageHandler>();
-        this.mockPluginDbContext = this.mockRepository.Create<IPluginDbContext>();
+        this.mockPluginDbContext = this.mockRepository.Create<IBCContext>();
         mockPluginDbContext.Setup(context => context.ShopUriAssociations)
             .Returns(shopUriAssociations.AsQueryable().BuildMockDbSet().Object);
     }
@@ -67,15 +70,15 @@ public class LetyShopsCashbackServiceTests
     [TestCase(3, 2, "pyszne")]
     public async Task ShouldReturnActualCashback(long id,decimal actualPromo, string shopName)
     {
-        var guidCast = id;
+        var shopId = id;
         // Arrange
         var service = this.CreateService();
-        Shop cccShop = new Shop() { Id = guidCast, Name = shopName };
+        Shop shop = new Shop() { Id = shopId, Name = shopName };
         Category category = null;
 
         // Act
         var result = await service.GetCashback(
-            cccShop,
+            shop,
             category);
 
         // Assert

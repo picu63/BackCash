@@ -15,13 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Models", "BCModels\BC.Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Interfaces", "BC.Interfaces\BC.Interfaces.csproj", "{7889D892-F4DF-4926-9C97-889E2AFB87D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BCPlugin.Models", "BCPlugin.Models\BCPlugin.Models.csproj", "{797E0B13-BCC9-451B-AB1D-FEA497780782}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Server", "BC\Server\BC.Server.csproj", "{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Client", "BC\Client\BC.Client.csproj", "{20DEBBD4-AEB7-4215-864A-35CFBB13A1EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BC.Server.Tests", "BC.Server.Tests\BC.Server.Tests.csproj", "{B94A9A89-9C23-42A8-A101-7D9A145F9DDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BC.Server.Tests", "BC.Server.Tests\BC.Server.Tests.csproj", "{B94A9A89-9C23-42A8-A101-7D9A145F9DDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{7889D892-F4DF-4926-9C97-889E2AFB87D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7889D892-F4DF-4926-9C97-889E2AFB87D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7889D892-F4DF-4926-9C97-889E2AFB87D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{797E0B13-BCC9-451B-AB1D-FEA497780782}.Release|Any CPU.Build.0 = Release|Any CPU
 		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{984DF6BD-1EC3-4266-A4AE-26B87F38BF64}.Release|Any CPU.ActiveCfg = Release|Any CPU

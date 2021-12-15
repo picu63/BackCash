@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Apis\" />
-    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
@@ -18,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BCModels\BC.Models.csproj" />
-    <ProjectReference Include="..\BCPlugin.Models\BCPlugin.Models.csproj" />
   </ItemGroup>
 
 </Project>

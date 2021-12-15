@@ -11,11 +11,11 @@ namespace BC.Server.Controllers;
 [Route("[controller]")]
 public class CashbacksController : ControllerBase
 {
-    private readonly IPluginsService pluginService;
+    private readonly ICashbacksService cashbacksService;
 
-    public CashbacksController(IPluginsService pluginService)
+    public CashbacksController(ICashbacksService cashbacksService)
     {
-        this.pluginService = pluginService;
+        this.cashbacksService = cashbacksService;
     }
 
     [HttpGet]
@@ -23,7 +23,7 @@ public class CashbacksController : ControllerBase
     public async Task<IActionResult> GetCashbacks([FromQuery]long shopId, [FromQuery] long? categoryId)
     {
         var cashbacks = new List<Cashback>();
-        await foreach (var cashback in pluginService.GetCashback(shopId, categoryId))
+        await foreach (var cashback in cashbacksService.GetCashbacks(shopId, categoryId))
         {
             cashbacks.Add(cashback);
         }
